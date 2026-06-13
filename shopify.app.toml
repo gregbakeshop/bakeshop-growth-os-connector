@@ -1,0 +1,50 @@
+# This file stores configurations for your Shopify app.
+# `client_id` and `application_url` are populated by `npm run config:link`
+# after the app is created in the Partner Dashboard.
+
+client_id = ""
+name = "Bakeshop Growth OS Connector"
+application_url = "https://connector.bakeshop.digital"
+embedded = true
+
+[access_scopes]
+# Read-only commerce data. read_customers triggers Shopify's protected
+# customer data review. See docs/superpowers/specs/2026-06-13-shopify-connector-design.md
+scopes = "read_orders,read_products,read_customers,read_discounts"
+
+[auth]
+redirect_urls = [
+  "https://connector.bakeshop.digital/auth/callback",
+  "https://connector.bakeshop.digital/auth/shopify/callback",
+  "https://connector.bakeshop.digital/api/auth/callback",
+]
+
+[webhooks]
+api_version = "2025-01"
+
+  # Handled by: /app/routes/webhooks.app.uninstalled.tsx
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = ["app/uninstalled"]
+
+  # Handled by: /app/routes/webhooks.app.scopes_update.tsx
+  [[webhooks.subscriptions]]
+  topics = ["app/scopes_update"]
+  uri = "/webhooks/app/scopes_update"
+
+  # Mandatory compliance topics for public apps.
+  # See: https://shopify.dev/docs/apps/build/privacy-law-compliance
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/customers/data_request"
+  compliance_topics = ["customers/data_request"]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/customers/redact"
+  compliance_topics = ["customers/redact"]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/shop/redact"
+  compliance_topics = ["shop/redact"]
+
+[pos]
+embedded = false

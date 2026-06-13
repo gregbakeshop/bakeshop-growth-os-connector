@@ -1,0 +1,87 @@
+// Bakeshop Growth OS Connector — Prisma schema.
+// SQLite via Prisma (CLI default). Migrate to Postgres only on write contention.
+// See docs/superpowers/specs/2026-06-13-shopify-connector-design.md
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+// Shopify offline session. accessToken is AES-256-GCM encrypted at rest by
+// EncryptedSessionStorage (app/lib/encrypted-session-storage.server.ts).
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?
+  expires             DateTime?
+  accessToken         String
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}
+
+// One row per installed shop. Drives the status UI and sync scheduling.
+model ShopifyInstallation {
+  id            String    @id @default(cuid())
+  shop          String    @unique // "client-store.myshopify.com"
+  installedAt   DateTime  @default(now())
+  uninstalledAt DateTime?
+  lastSyncAt    DateTime?
+  syncStatus    String    @default("idle") // "idle" | "syncing" | "error"
+  errorMessage  String?
+}
+
+// Raw landed Shopify data — full GraphQL node stored as JSON in `data`.
+// Normalization happens downstream (inbox-analytics / future warehouse).
+model RawShopifyOrder {
+  id        String   @id // Shopify GID
+  shop      String
+  data      String
+  syncedAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([shop])
+}
+
+model RawShopifyProduct {
+  id        String   @id
+  shop      String
+  data      String
+  syncedAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([shop])
+}
+
+model RawShopifyCustomer {
+  id        String   @id
+  shop      String
+  data      String
+  syncedAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([shop])
+}
+
+model RawShopifyDiscount {
+  id        String   @id
+  shop      String
+  data      String
+  syncedAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([shop])
+}
