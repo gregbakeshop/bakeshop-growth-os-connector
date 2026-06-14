@@ -1,4 +1,6 @@
-# Deploying Bakeshop Growth OS Connector
+# Deploying Bakeshop OS Connector
+
+Repo: `https://github.com/gregbakeshop/bakeshop-growth-os-connector`
 
 Target: the existing DigitalOcean droplet (alongside inbox-analytics), behind Caddy,
 at `https://connector.bakeshop.digital`. Single instance (in-process cron).
