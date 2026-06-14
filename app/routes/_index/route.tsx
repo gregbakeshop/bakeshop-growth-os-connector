@@ -22,10 +22,10 @@ export default function App() {
   return (
     <div className={styles.index}>
       <div className={styles.content}>
-        <h1 className={styles.heading}>Bakeshop Growth OS Connector</h1>
+        <h1 className={styles.heading}>Bakeshop OS</h1>
         <p className={styles.text}>
           Connect your Shopify store&apos;s read-only commerce data to your
-          private Bakeshop Growth OS analytics workspace.
+          private Bakeshop analytics workspace.
         </p>
         {showForm && (
           <Form className={styles.form} method="post" action="/auth/login">

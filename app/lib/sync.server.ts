@@ -85,25 +85,6 @@ const ENTITIES: EntityConfig[] = [
       }),
   },
   {
-    field: "customers",
-    nodeFields: `
-      id
-      createdAt
-      updatedAt
-      numberOfOrders
-      state
-      amountSpent { amount currencyCode }
-      verifiedEmail
-      tags
-    `,
-    upsert: (id, shop, data) =>
-      prisma.rawShopifyCustomer.upsert({
-        where: { id },
-        create: { id, shop, data },
-        update: { shop, data },
-      }),
-  },
-  {
     field: "discountNodes",
     nodeFields: `
       id

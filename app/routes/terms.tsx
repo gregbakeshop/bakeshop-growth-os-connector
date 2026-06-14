@@ -7,7 +7,7 @@ export default function Terms() {
         <strong>Last updated: June 13, 2026.</strong>
       </p>
       <p>
-        By installing Bakeshop Growth OS Connector (&ldquo;the App&rdquo;) you
+        By installing Bakeshop OS (&ldquo;the App&rdquo;) you
         agree to these terms. The App is provided by Bakeshop Digital to its
         clients to connect Shopify commerce data to a private analytics
         workspace.

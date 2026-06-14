@@ -24,7 +24,7 @@ export function LegalPage({
     >
       <h1 style={{ fontSize: 28, marginBottom: 8 }}>{title}</h1>
       <p style={{ color: "#6b6b6b", marginTop: 0 }}>
-        Bakeshop Growth OS Connector
+        Bakeshop OS
       </p>
       {children}
       <hr

@@ -7,7 +7,7 @@ export default function Privacy() {
         <strong>Last updated: June 13, 2026.</strong>
       </p>
       <p>
-        Bakeshop Growth OS Connector (&ldquo;the App&rdquo;) is operated by
+        Bakeshop OS (&ldquo;the App&rdquo;) is operated by
         Bakeshop Digital. The App connects a Shopify store&apos;s read-only
         commerce data to the merchant&apos;s private Bakeshop Growth OS analytics
         workspace.

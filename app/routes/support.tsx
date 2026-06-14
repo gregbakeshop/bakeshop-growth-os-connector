@@ -4,7 +4,7 @@ export default function Support() {
   return (
     <LegalPage title="Support">
       <p>
-        Need help with Bakeshop Growth OS Connector? We&apos;re here.
+        Need help with Bakeshop OS? We&apos;re here.
       </p>
 
       <h2>Contact</h2>
@@ -18,7 +18,7 @@ export default function Support() {
       <p>
         <strong>What does this app do?</strong> It syncs your store&apos;s
         read-only orders, products, customers, and discounts into your private
-        Bakeshop Growth OS analytics workspace. Charts and reporting live in
+        Bakeshop analytics workspace. Charts and reporting live in
         Bakeshop, not inside this app.
       </p>
       <p>

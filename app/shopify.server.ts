@@ -7,9 +7,7 @@ import {
 import prisma from "./db.server";
 import { EncryptedSessionStorage } from "./lib/encrypted-session-storage.server";
 
-// Read-only scopes for the connector. read_customers triggers Shopify's
-// protected-customer-data review; accepted because new/returning is core.
-const DEFAULT_SCOPES = "read_orders,read_products,read_customers,read_discounts";
+const DEFAULT_SCOPES = "read_orders,read_products,read_discounts";
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY,

@@ -18,8 +18,8 @@ import { authenticate } from "../shopify.server";
 import prisma from "../db.server";
 import { syncShop } from "../lib/sync.server";
 
-const SUPPORT_EMAIL = "support@bakeshop.digital";
-const SYNCED_ENTITIES = ["Orders", "Customers", "Products", "Discounts"];
+const SUPPORT_EMAIL = "dayna@bakeshop.digital";
+const SYNCED_ENTITIES = ["Orders", "Products", "Discounts"];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { session } = await authenticate.admin(request);
@@ -82,7 +82,7 @@ export default function Index() {
 
   return (
     <Page>
-      <TitleBar title="Bakeshop Growth OS Connector" />
+      <TitleBar title="Bakeshop OS" />
       <BlockStack gap="500">
         <Layout>
           <Layout.Section>
@@ -155,7 +155,7 @@ export default function Index() {
                 </Text>
                 <Text as="p" variant="bodyMd">
                   This app connects your store&apos;s read-only commerce data to
-                  your private Bakeshop Growth OS analytics workspace. Reporting
+                  your private Bakeshop analytics workspace. Reporting
                   and insights live in Bakeshop, not in this app.
                 </Text>
                 <List>
