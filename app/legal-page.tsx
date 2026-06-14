@@ -36,7 +36,7 @@ export function LegalPage({
       />
       <p style={{ fontSize: 14, color: "#6b6b6b" }}>
         Bakeshop Digital ·{" "}
-        <a href="mailto:support@bakeshop.digital">support@bakeshop.digital</a> ·{" "}
+        <a href="mailto:hello@bakeshop.digital">hello@bakeshop.digital</a> ·{" "}
         <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> ·{" "}
         <a href="/support">Support</a>
       </p>

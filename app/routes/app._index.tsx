@@ -18,7 +18,7 @@ import { authenticate } from "../shopify.server";
 import prisma from "../db.server";
 import { syncShop } from "../lib/sync.server";
 
-const SUPPORT_EMAIL = "dayna@bakeshop.digital";
+const SUPPORT_EMAIL = "hello@bakeshop.digital";
 const SYNCED_ENTITIES = ["Orders", "Products", "Discounts"];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

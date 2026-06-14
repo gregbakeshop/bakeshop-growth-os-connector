@@ -10,7 +10,7 @@ export default function Support() {
       <h2>Contact</h2>
       <p>
         Email{" "}
-        <a href="mailto:support@bakeshop.digital">support@bakeshop.digital</a>{" "}
+        <a href="mailto:hello@bakeshop.digital">hello@bakeshop.digital</a>{" "}
         and we&apos;ll respond within one business day.
       </p>
 

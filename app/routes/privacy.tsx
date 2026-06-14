@@ -44,13 +44,13 @@ export default function Privacy() {
         uninstall). Individual customer data is deleted on a{" "}
         <code>customers/redact</code> request. To request deletion at any time,
         email{" "}
-        <a href="mailto:support@bakeshop.digital">support@bakeshop.digital</a>.
+        <a href="mailto:hello@bakeshop.digital">hello@bakeshop.digital</a>.
       </p>
 
       <h2>Contact</h2>
       <p>
         Questions about this policy:{" "}
-        <a href="mailto:support@bakeshop.digital">support@bakeshop.digital</a>.
+        <a href="mailto:hello@bakeshop.digital">hello@bakeshop.digital</a>.
       </p>
     </LegalPage>
   );

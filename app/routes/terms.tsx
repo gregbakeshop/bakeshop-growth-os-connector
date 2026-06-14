@@ -41,7 +41,7 @@ export default function Terms() {
 
       <h2>Contact</h2>
       <p>
-        <a href="mailto:support@bakeshop.digital">support@bakeshop.digital</a>.
+        <a href="mailto:hello@bakeshop.digital">hello@bakeshop.digital</a>.
       </p>
     </LegalPage>
   );

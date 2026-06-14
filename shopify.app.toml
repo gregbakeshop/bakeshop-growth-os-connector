@@ -2,7 +2,7 @@
 
 client_id = "34c4d8e95ef5450d6411344ea4c44d18"
 name = "Bakeshop OS"
-application_url = "https://connector.bakeshop.digital"
+application_url = "https://connector.bakeshop.report"
 embedded = true
 
 [build]
@@ -15,9 +15,9 @@ use_legacy_install_flow = false
 
 [auth]
 redirect_urls = [
-  "https://connector.bakeshop.digital/auth/callback",
-  "https://connector.bakeshop.digital/auth/shopify/callback",
-  "https://connector.bakeshop.digital/api/auth/callback",
+  "https://connector.bakeshop.report/auth/callback",
+  "https://connector.bakeshop.report/auth/shopify/callback",
+  "https://connector.bakeshop.report/api/auth/callback",
 ]
 
 [webhooks]
