@@ -9,6 +9,7 @@ import {
   Button,
   BlockStack,
   InlineStack,
+  InlineGrid,
   Badge,
   List,
   Link,
@@ -19,7 +20,6 @@ import prisma from "../db.server";
 import { syncShop } from "../lib/sync.server";
 
 const SUPPORT_EMAIL = "hello@bakeshop.digital";
-const SYNCED_ENTITIES = ["Orders", "Products", "Discounts"];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { session } = await authenticate.admin(request);
@@ -32,11 +32,19 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     update: { uninstalledAt: null },
   });
 
+  // Cheap COUNTs over the indexed `shop` column — proof the sync is landing data.
+  const [orders, products, discounts] = await Promise.all([
+    prisma.rawShopifyOrder.count({ where: { shop } }),
+    prisma.rawShopifyProduct.count({ where: { shop } }),
+    prisma.rawShopifyDiscount.count({ where: { shop } }),
+  ]);
+
   return {
     shop,
     lastSyncAt: installation.lastSyncAt?.toISOString() ?? null,
     syncStatus: installation.syncStatus,
     errorMessage: installation.errorMessage,
+    counts: { orders, products, discounts },
   };
 };
 
@@ -54,11 +62,25 @@ function formatTimestamp(iso: string | null): string {
   });
 }
 
+function formatCount(n: number): string {
+  return n.toLocaleString("en-US");
+}
+
 export default function Index() {
-  const { shop, lastSyncAt, syncStatus, errorMessage } =
+  const { shop, lastSyncAt, syncStatus, errorMessage, counts } =
     useLoaderData<typeof loader>();
   const fetcher = useFetcher<typeof action>();
   const shopify = useAppBridge();
+
+  // Prefer fresh counts from a just-completed sync, else the loader snapshot.
+  const liveCounts =
+    fetcher.data?.ok && fetcher.data.counts
+      ? {
+          orders: fetcher.data.counts.orders ?? counts.orders,
+          products: fetcher.data.counts.products ?? counts.products,
+          discounts: fetcher.data.counts.discountNodes ?? counts.discounts,
+        }
+      : counts;
 
   const isSyncing =
     ["loading", "submitting"].includes(fetcher.state) &&
@@ -118,13 +140,42 @@ export default function Index() {
                   </InlineStack>
                 </BlockStack>
 
-                <BlockStack gap="100">
+                <BlockStack gap="200">
                   <Text as="span" variant="bodyMd" tone="subdued">
-                    Synced
+                    Synced to your Bakeshop workspace
                   </Text>
-                  <Text as="span" variant="bodyMd">
-                    {SYNCED_ENTITIES.join(" · ")}
-                  </Text>
+                  <InlineGrid columns={3} gap="300">
+                    <Card background="bg-surface-secondary">
+                      <BlockStack gap="100">
+                        <Text as="span" variant="headingLg">
+                          {formatCount(liveCounts.orders)}
+                        </Text>
+                        <Text as="span" variant="bodySm" tone="subdued">
+                          Orders
+                        </Text>
+                      </BlockStack>
+                    </Card>
+                    <Card background="bg-surface-secondary">
+                      <BlockStack gap="100">
+                        <Text as="span" variant="headingLg">
+                          {formatCount(liveCounts.products)}
+                        </Text>
+                        <Text as="span" variant="bodySm" tone="subdued">
+                          Products
+                        </Text>
+                      </BlockStack>
+                    </Card>
+                    <Card background="bg-surface-secondary">
+                      <BlockStack gap="100">
+                        <Text as="span" variant="headingLg">
+                          {formatCount(liveCounts.discounts)}
+                        </Text>
+                        <Text as="span" variant="bodySm" tone="subdued">
+                          Discounts
+                        </Text>
+                      </BlockStack>
+                    </Card>
+                  </InlineGrid>
                 </BlockStack>
 
                 {fetcher.data && !fetcher.data.ok && (
