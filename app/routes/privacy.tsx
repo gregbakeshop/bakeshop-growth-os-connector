@@ -16,8 +16,8 @@ export default function Privacy() {
       <h2>What we access</h2>
       <p>
         With the store owner&apos;s authorization, the App reads the following
-        data through the Shopify Admin API: orders, products, customers, and
-        discounts. Access is <strong>read-only</strong>. The App does not modify
+        data through the Shopify Admin API: orders, products, and discounts.
+        Access is <strong>read-only</strong>. The App does not modify
         any data in the Shopify store.
       </p>
 

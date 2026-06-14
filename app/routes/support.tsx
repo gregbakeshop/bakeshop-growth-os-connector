@@ -17,7 +17,7 @@ export default function Support() {
       <h2>Common questions</h2>
       <p>
         <strong>What does this app do?</strong> It syncs your store&apos;s
-        read-only orders, products, customers, and discounts into your private
+        read-only orders, products, and discounts into your private
         Bakeshop analytics workspace. Charts and reporting live in
         Bakeshop, not inside this app.
       </p>
