@@ -17,6 +17,13 @@ export default function App() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.aurora} aria-hidden="true">
+        <div className={`${styles.blob} ${styles.blob1}`} />
+        <div className={`${styles.blob} ${styles.blob2}`} />
+        <div className={`${styles.blob} ${styles.blob3}`} />
+      </div>
+      <div className={styles.veil} aria-hidden="true" />
+
       <nav className={styles.nav}>
         <span className={styles.logo}>Bakeshop OS</span>
         <div className={styles.navLinks}>
@@ -27,58 +34,30 @@ export default function App() {
       </nav>
 
       <main className={styles.hero}>
-        <div className={styles.badge}>
-          <span className={styles.dot} />
-          Built for Bakeshop Digital clients
-        </div>
-
-        <h1 className={styles.heading}>Your store data,<br />where you need it.</h1>
-
-        <p className={styles.subheading}>
+        <h1 className={styles.heading}>Signal, not noise.</h1>
+        <p className={styles.lead}>
+          We surface what&apos;s working and what&apos;s slipping, and the path
+          to profitable growth.
+        </p>
+        <p className={styles.sub}>
           Connect your Shopify store to your private Bakeshop analytics
           workspace. Read-only sync, zero configuration.
         </p>
 
         {showForm && (
           <Form className={styles.form} method="post" action="/auth/login">
-            <div className={styles.inputWrap}>
-              <input
-                className={styles.input}
-                type="text"
-                name="shop"
-                placeholder="your-store.myshopify.com"
-                autoComplete="off"
-              />
-            </div>
+            <input
+              className={styles.input}
+              type="text"
+              name="shop"
+              placeholder="your-store.myshopify.com"
+              autoComplete="off"
+            />
             <button className={styles.button} type="submit">
               Connect store
             </button>
           </Form>
         )}
-
-        <div className={styles.features}>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>🔒</div>
-            <p className={styles.featureTitle}>Read-only access</p>
-            <p className={styles.featureText}>
-              Syncs orders, products, and discounts. Never writes to your store.
-            </p>
-          </div>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>⚡</div>
-            <p className={styles.featureTitle}>Automatic daily sync</p>
-            <p className={styles.featureText}>
-              Runs every night at 4 AM UTC, plus on-demand with Sync now.
-            </p>
-          </div>
-          <div className={styles.feature}>
-            <div className={styles.featureIcon}>📊</div>
-            <p className={styles.featureTitle}>Private analytics</p>
-            <p className={styles.featureText}>
-              Data flows into your Bakeshop Growth OS workspace. Reporting lives there, not here.
-            </p>
-          </div>
-        </div>
       </main>
 
       <footer className={styles.footer}>
@@ -86,7 +65,9 @@ export default function App() {
         <div className={styles.footerLinks}>
           <a href="/privacy" className={styles.footerLink}>Privacy</a>
           <a href="/terms" className={styles.footerLink}>Terms</a>
-          <a href="mailto:hello@bakeshop.digital" className={styles.footerLink}>hello@bakeshop.digital</a>
+          <a href="mailto:hello@bakeshop.digital" className={styles.footerLink}>
+            hello@bakeshop.digital
+          </a>
         </div>
       </footer>
     </div>
